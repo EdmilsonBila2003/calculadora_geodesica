@@ -12,6 +12,7 @@ Interface moderna com tema escuro/claro, cálculos separados da interface, teste
 | UTM | (φ, λ) ⇄ (zona, E, N) |
 | Problema Directo | Puissant, Sodano ou comparação dos dois |
 | Problema Inverso | Puissant, Sodano ou comparação dos dois |
+| Reduções e Alturas | Distância inclinada → horizontal (zenital/vertical), redução ao elipsóide, factor de escala, nivelamento, alturas h/H/N, coordenadas por azimute e inverso |
 
 Elipsoides: WGS84, GRS80, Clarke 1880 (RGS), Clarke 1866, Bessel 1841, Internacional 1924, Krassovsky 1940 e personalizado (a, 1/f).
 Os ângulos aceitam `-25.9692`, `-25 58 9.12` ou `25°58'9.12" S`.
@@ -26,7 +27,7 @@ Os ângulos aceitam `-25.9692`, `-25 58 9.12` ou `25°58'9.12" S`.
    source .venv/bin/activate       # Linux / macOS
    ```
 3. `pip install -r requirements.txt`
-4. `python main.py`
+4. `python main.py` (na pasta raiz do projecto)
 
 Requer Python 3.10 ou superior com tkinter (já incluído no instalador oficial para Windows).
 
@@ -46,6 +47,7 @@ geodesia/elipsoides.py     elipsoides e parâmetros derivados (f, e², e'², n)
 geodesia/utils.py          leitura/formatação de ângulos, tipos de resultado
 geodesia/coordenadas.py    geodésicas ⇄ cartesianas
 geodesia/utm.py            UTM
+geodesia/reducoes.py       reduções, nivelamento, alturas, coordenadas locais
 geodesia/puissant.py       problemas directo e inverso de Puissant
 geodesia/sodano.py         problemas directo e inverso de Sodano
 ui/app.py                  janela, cartões e abas (CustomTkinter)
@@ -97,3 +99,7 @@ Puissant só deve ser usado até cerca de 100 km (a interface avisa). Sodano nã
 - UTM só entre 80°S e 84°N, sem as zonas especiais da Noruega e Svalbard.
 - Verifique os parâmetros dos elipsoides com o material da disciplina (valores da literatura corrente).
 - A janela foi testada apenas em lógica (ver abaixo); o aspecto visual deve ser confirmado no seu computador.
+
+## Nota sobre os exemplos do material
+
+Nos Exemplos 2 e 5 os valores impressos diferem da fórmula (13,084 m em vez de 13,082 m; 10,159 m em vez de 9,866 m). Os testes seguem a fórmula.
